@@ -10,9 +10,9 @@
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">
-                    {{ $viewData["product"]["name"] }}
+                    {{ $viewData["product"]->getName() }}
                 </h5>
-                <p class="card-text {{ $viewData["color"] }}">Price: {{ $viewData["product"]["price"] }}</p>
+                <p class="card-text {{ $viewData["color"] }}">Price: {{ $viewData["product"]->getPrice() }}</p>
                 @foreach($viewData["product"]->comments as $comment)
                 - {{ $comment->getDescription() }}<br />
                 @endforeach

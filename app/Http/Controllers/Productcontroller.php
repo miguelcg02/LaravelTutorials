@@ -24,7 +24,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
 
-        if ($product['price'] > 100) { // Revisar
+        if ($product['price'] > 100) {
             $viewData['color'] = 'red';
         }
 
@@ -37,7 +37,7 @@ class ProductController extends Controller
 
     public function create(): View
     {
-        $viewData = []; //to be sent to the view
+        $viewData = []; 
         $viewData['title'] = 'Create product';
 
         return view('product.create')->with('viewData', $viewData);
@@ -46,10 +46,7 @@ class ProductController extends Controller
 
     public function save(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric|gt:100',
-        ]);
+        Product::validateCreateform($request);
         Product::create($request->only(['name', 'price']));
 
         return back();

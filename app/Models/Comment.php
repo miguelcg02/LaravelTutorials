@@ -23,11 +23,6 @@ class Comment extends Model
         return $this->attributes['id'];
     }
 
-    public function setId(int $id): void
-    {
-        $this->attributes['id'] = $id;
-    }
-
     public function getDescription(): string
     {
         return $this->attributes['description'];
