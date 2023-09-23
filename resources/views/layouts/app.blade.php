@@ -17,10 +17,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
-                    <a class="nav-link active" href="{{ route('home.about') }}">About</a>
-                    <a class="nav-link active" href="{{ route('product.index') }}">Products</a>
-                    <a class="nav-link active" href="{{ route('product.create') }}">Create product</a>
+                <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
+                <a class="nav-link active" href="{{ route('home.about') }}">About</a>
+                @guest 
+                <div class="vr bg-white mx-2 d-none d-lg-block"></div> 
+                <a class="nav-link active" href="{{ route('login') }}">Login</a> 
+                <a class="nav-link active" href="{{ route('register') }}">Register</a> 
+                @else 
+                <a class="nav-link active" href="{{ route('product.index') }}">Products</a>
+                <a class="nav-link active" href="{{ route('product.create') }}">Create product</a>
+                <div class="vr bg-white mx-2 d-none d-lg-block"></div> 
+                <form id="logout" action="{{ route('logout') }}" method="POST"> 
+                    <a role="button" class="nav-link active" 
+                    onclick="document.getElementById('logout').submit();">Logout</a> 
+                    @csrf 
+                </form> 
+                @endguest
                 </div>
             </div>
         </div>
